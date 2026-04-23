@@ -5,6 +5,17 @@ la numérotation suit [Semantic Versioning 2.0.0](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.9.0] — 2026-04-23
+
+### Added
+- **Couche DAO** (PR #21)
+  - `GenericDao<T, ID>` abstrait — CRUD commun (`persist`, `find`, `findAll`, `merge`, `remove`)
+  - `AddressDao`, `AnimalDao`, `ProductDao` — DAOs triviaux
+  - `PetStoreDao` — avec `findAllAnimalsByPetStore(Long)` (JPQL polymorphe, couvre la consigne du sujet)
+- **Couche Service** (PR #23)
+  - `SeedService` — insère ≥ 3 enregistrements par table via EntityManager
+  - `PetStoreService` — expose le use case `findAnimalsOfStore(Long)` pour le Main
+
 ## [0.5.0] — 2026-04-23
 
 ### Added
@@ -50,7 +61,8 @@ la numérotation suit [Semantic Versioning 2.0.0](https://semver.org/).
 - Sujet du TP (`tp-eval-pet-store.pdf`) à la racine
 - Config IntelliJ partagée (`.idea/misc.xml`, `modules.xml`, `vcs.xml`)
 
-[Unreleased]: https://github.com/CybLow/multi-couches/compare/v0.5.0...HEAD
+[Unreleased]: https://github.com/CybLow/multi-couches/compare/v0.9.0...HEAD
+[0.9.0]: https://github.com/CybLow/multi-couches/compare/v0.5.0...v0.9.0
 [0.5.0]: https://github.com/CybLow/multi-couches/compare/v0.3.0...v0.5.0
 [0.3.0]: https://github.com/CybLow/multi-couches/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/CybLow/multi-couches/compare/v0.1.0...v0.2.0
