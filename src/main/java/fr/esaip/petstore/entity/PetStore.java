@@ -7,13 +7,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Animalerie — entité pivot du modèle.
@@ -57,6 +60,13 @@ public class PetStore {
      */
     @OneToMany(mappedBy = "petStore", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Animal> animals = new ArrayList<>();
+
+    /**
+     * Produits vendus dans cette animalerie. Côté inverse du {@code @ManyToMany}
+     * défini sur {@link Product#getPetStores()} — {@code mappedBy="petStores"}.
+     */
+    @ManyToMany(mappedBy = "petStores")
+    private Set<Product> products = new HashSet<>();
 
     public PetStore() {
     }
@@ -117,6 +127,14 @@ public class PetStore {
 
     public void setAnimals(List<Animal> animals) {
         this.animals = animals;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 
     @Override
