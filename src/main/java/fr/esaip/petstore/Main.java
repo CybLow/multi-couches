@@ -37,11 +37,12 @@ public final class Main {
             printCounts(em);
             printAnimalsOfFirstStore(em);
         } catch (RuntimeException e) {
-            System.err.println("❌ Erreur pendant l'exécution : " + e.getMessage());
+            System.err.println("Erreur pendant l'exécution : " + e.getMessage());
             e.printStackTrace();
             throw e;
         } finally {
             em.close();
+            EntityManagerFactoryProvider.close();
         }
 
         System.out.println("=== TP Eval Pet Store — terminé ===");
