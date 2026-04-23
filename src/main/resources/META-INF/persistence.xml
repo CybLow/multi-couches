@@ -19,9 +19,9 @@
         <class>fr.esaip.petstore.entity.Animal</class>
         <class>fr.esaip.petstore.entity.Cat</class>
         <class>fr.esaip.petstore.entity.Fish</class>
-        <!-- Les entités suivantes seront décommentées par les PRs à venir : -->
+        <class>fr.esaip.petstore.entity.Product</class>
+        <!-- Dernière entité à venir : -->
         <!-- <class>fr.esaip.petstore.entity.PetStore</class>        -->
-        <!-- <class>fr.esaip.petstore.entity.Product</class>         -->
 
         <properties>
             <!-- Connexion JDBC : convention du cours (jpa_user / jpa_pass) -->
