@@ -25,16 +25,16 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "number", nullable = false)
+    @Column(name = "number", nullable = false, length = 10)
     private String number;
 
-    @Column(name = "street", nullable = false)
+    @Column(name = "street", nullable = false, length = 120)
     private String street;
 
-    @Column(name = "zip_code", nullable = false)
+    @Column(name = "zip_code", nullable = false, length = 10)
     private String zipCode;
 
-    @Column(name = "city", nullable = false)
+    @Column(name = "city", nullable = false, length = 80)
     private String city;
 
     /** Constructeur sans argument requis par JPA. */
