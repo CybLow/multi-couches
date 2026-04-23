@@ -7,6 +7,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -54,6 +56,14 @@ public abstract class Animal {
     @Column(name = "couleur", nullable = false, length = 40)
     private String couleur;
 
+    /**
+     * Animalerie qui vend cet animal. Côté owner du {@code @OneToMany} défini
+     * sur {@link PetStore#getAnimals()}.
+     */
+    @ManyToOne
+    @JoinColumn(name = "petstore_id")
+    private PetStore petStore;
+
     protected Animal() {
     }
 
@@ -84,6 +94,14 @@ public abstract class Animal {
 
     public void setCouleur(String couleur) {
         this.couleur = couleur;
+    }
+
+    public PetStore getPetStore() {
+        return petStore;
+    }
+
+    public void setPetStore(PetStore petStore) {
+        this.petStore = petStore;
     }
 
     @Override
