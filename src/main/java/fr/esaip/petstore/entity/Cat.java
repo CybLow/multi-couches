@@ -14,7 +14,7 @@ import java.util.Date;
 @Table(name = "cat")
 public class Cat extends Animal {
 
-    @Column(name = "chip_id", nullable = false, length = 32)
+    @Column(name = "chip_id", nullable = false, length = 32, unique = true)
     private String chipId;
 
     public Cat() {
