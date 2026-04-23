@@ -5,12 +5,14 @@ la numérotation suit [Semantic Versioning 2.0.0](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.2.0] — 2026-04-23
+
 ### Added
 - Scaffold Maven (`pom.xml`, arbre de packages `fr.esaip.petstore.*`)
-- Templates GitHub (issues, PR, CODEOWNERS)
+- Templates GitHub (`.github/ISSUE_TEMPLATE/*`, `PULL_REQUEST_TEMPLATE.md`, `CODEOWNERS`)
 - `CONTRIBUTING.md` décrivant le GitHub Flow, les Conventional Commits et SemVer
-- Squelettes de documentation (`docs/ARCHITECTURE.md`, `docs/DATABASE.md`, `docs/INSTALLATION.md`)
-- Répertoire `init-db/` pour le script SQL de création de la DB `petstore`
+- Documentation (`docs/ARCHITECTURE.md`, `docs/DATABASE.md`, `docs/INSTALLATION.md`)
+- Script d'init DB (`init-db/01-petstore.sql`)
 - `src/main/resources/META-INF/persistence.xml` — persistence-unit `petstore-pu`, Hibernate `hbm2ddl=create`
 - `fr.esaip.petstore.config.EntityManagerFactoryProvider` — EMF singleton thread-safe + shutdown hook
 
@@ -21,5 +23,6 @@ la numérotation suit [Semantic Versioning 2.0.0](https://semver.org/).
 - Sujet du TP (`tp-eval-pet-store.pdf`) à la racine
 - Config IntelliJ partagée (`.idea/misc.xml`, `modules.xml`, `vcs.xml`)
 
-[Unreleased]: https://github.com/CybLow/multi-couches/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/CybLow/multi-couches/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/CybLow/multi-couches/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/CybLow/multi-couches/releases/tag/v0.1.0
