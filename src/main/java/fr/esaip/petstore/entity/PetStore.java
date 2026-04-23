@@ -8,8 +8,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -46,6 +49,15 @@ public class PetStore {
     @JoinColumn(name = "address_id", unique = true)
     private Address address;
 
+    /**
+     * Animaux vendus dans cette animalerie. Le côté propriétaire est
+     * {@link Animal#getPetStore()} (FK {@code petstore_id}).
+     * {@code cascade=ALL} + {@code orphanRemoval=true} : supprimer un animal
+     * du set suffit à le supprimer en base.
+     */
+    @OneToMany(mappedBy = "petStore", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Animal> animals = new ArrayList<>();
+
     public PetStore() {
     }
 
@@ -53,6 +65,18 @@ public class PetStore {
         this.name = name;
         this.managerName = managerName;
         this.address = address;
+    }
+
+    /** Helper bidirectionnel : ajoute l'animal et configure sa back-reference. */
+    public void addAnimal(Animal animal) {
+        animals.add(animal);
+        animal.setPetStore(this);
+    }
+
+    /** Helper bidirectionnel : retire l'animal et nettoie sa back-reference. */
+    public void removeAnimal(Animal animal) {
+        animals.remove(animal);
+        animal.setPetStore(null);
     }
 
     public Long getId() {
@@ -85,6 +109,14 @@ public class PetStore {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public List<Animal> getAnimals() {
+        return animals;
+    }
+
+    public void setAnimals(List<Animal> animals) {
+        this.animals = animals;
     }
 
     @Override
