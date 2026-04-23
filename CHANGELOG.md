@@ -5,6 +5,10 @@ la numérotation suit [Semantic Versioning 2.0.0](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- Enum `fr.esaip.petstore.entity.enums.ProdType` (`FOOD`, `ACCESSORY`, `CLEANING`)
+- Enum `fr.esaip.petstore.entity.enums.FishLivEnv` (`FRESH_WATER`, `SEA_WATER`)
+
 ## [0.2.0] — 2026-04-23
 
 ### Added
