@@ -1,0 +1,14 @@
+# Code owners — propriétaires par défaut (review automatiquement requise)
+# Doc : https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Par défaut, toute modification requiert la review d'au moins un membre du binôme
+*                                       @CybLow @dimitriLeChasseur
+
+# Documentation : review de préférence par Maksim (responsable doc sur ce projet)
+/docs/                                  @dimitriLeChasseur
+/README.md                              @dimitriLeChasseur
+/CHANGELOG.md                           @dimitriLeChasseur
+/CONTRIBUTING.md                        @dimitriLeChasseur
+
+# Mapping JPA : les 2 binômes doivent approuver
+/src/main/java/fr/esaip/petstore/entity/   @CybLow @dimitriLeChasseur
