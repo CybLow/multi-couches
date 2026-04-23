@@ -56,7 +56,7 @@ public final class Main {
         try {
             new SeedService(em).seedAll();
             tx.commit();
-            System.out.println("✅ Seed terminé — commit OK.");
+            System.out.println("[OK] Seed terminé, transaction commitée.");
         } catch (RuntimeException e) {
             if (tx.isActive()) {
                 tx.rollback();
@@ -93,13 +93,13 @@ public final class Main {
                 .min((a, b) -> a.getId().compareTo(b.getId()))
                 .orElseThrow();
 
-        System.out.println("🏪 " + firstStore);
+        System.out.println("Animalerie ciblée : " + firstStore);
         List<Animal> animals = service.findAnimalsOfStore(firstStore.getId());
         if (animals.isEmpty()) {
             System.out.println("  (aucun animal)");
         } else {
-            animals.forEach(a -> System.out.println("  🐾 " + a));
+            animals.forEach(a -> System.out.println("  - " + a));
         }
-        System.out.printf("✅ Requête OK — %d animal(s) trouvé(s).%n", animals.size());
+        System.out.printf("[OK] Requête exécutée : %d animal(s) trouvé(s).%n", animals.size());
     }
 }
