@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📘 Documentation du projet
+    url: https://github.com/CybLow/multi-couches#readme
+    about: Consulter le README, ARCHITECTURE.md et INSTALLATION.md avant d'ouvrir une issue.
+  - name: 💬 Contribuer
+    url: https://github.com/CybLow/multi-couches/blob/main/CONTRIBUTING.md
+    about: Conventions de commits, nommage des branches, workflow GitHub Flow.
