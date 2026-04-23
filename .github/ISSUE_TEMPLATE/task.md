@@ -1,22 +1,22 @@
 ---
-name: "🔧 Tâche technique"
+name: "Tâche technique"
 about: "Setup, refactor, dépendances, tooling, documentation"
 title: "chore(<scope>): <résumé>"
 labels: ["type: chore"]
 assignees: []
 ---
 
-## 🎯 Contexte
+## Contexte
 
 <!-- Pourquoi cette tâche est nécessaire. -->
 
-## 🧾 Tâches
+## Tâches
 
 - [ ] …
 - [ ] …
 - [ ] …
 
-## ✔️ Done quand
+## Done quand
 
 - [ ] Toutes les sous-tâches cochées
 - [ ] Commits atomiques en Conventional Commits
