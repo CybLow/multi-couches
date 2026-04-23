@@ -16,6 +16,27 @@ import java.util.Objects;
 
 /**
  * Classe mère abstraite de la hiérarchie des animaux vendus en animalerie.
+ *
+ * <h2>Stratégie d'héritage : {@link InheritanceType#JOINED JOINED}</h2>
+ *
+ * <p>Chaque entité concrète ({@code Fish}, {@code Cat}) possède sa propre table,
+ * qui contient uniquement ses champs spécifiques. La PK de ces tables est aussi
+ * une FK vers {@code animal.id} — l'équivalent SQL d'une "table par classe avec
+ * jointure".</p>
+ *
+ * <p>Pour récupérer un {@code Fish}, Hibernate fait un {@code INNER JOIN} entre
+ * {@code fish} et {@code animal}. Pour une requête polymorphe sur
+ * {@code Animal} (ex: {@code SELECT a FROM Animal a}), Hibernate fait un
+ * {@code LEFT OUTER JOIN} sur chaque table fille pour instancier le bon type
+ * concret à la volée.</p>
+ *
+ * <h2>Pourquoi {@code @Entity} et pas {@code @MappedSuperclass} ?</h2>
+ *
+ * <p>{@code @MappedSuperclass} serait incompatible avec JOINED : cette
+ * annotation indique que la classe n'a PAS de table propre — ses champs sont
+ * copiés dans chaque sous-classe (équivalent de la stratégie
+ * {@code TABLE_PER_CLASS}). JOINED exige au contraire une table parent pour
+ * les colonnes communes.</p>
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
