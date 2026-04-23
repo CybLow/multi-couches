@@ -5,6 +5,32 @@ la numérotation suit [Semantic Versioning 2.0.0](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.0.0] — 2026-04-23
+
+### Added
+- `fr.esaip.petstore.Main` — orchestrateur complet (PR #26)
+  - Création du schéma par Hibernate
+  - Seed des données via `SeedService.seedAll()`
+  - Exécution de la requête JPQL `findAnimalsOfStore`
+  - Affichage lisible (comptages par table + liste polymorphe Fish/Cat)
+  - Gestion propre des transactions et de l'EM (rollback, close en `finally`)
+- `README.md` complet avec badges, auteurs, diagrammes, quick start, versions, liens docs
+- Récapitulatif du workflow DevOps (GitHub Flow, Conventional Commits, SemVer)
+
+### Summary
+
+Release finale — le projet couvre **toutes les consignes du sujet** :
+
+- ✅ Projet multi-couches (entity / dao / service / config)
+- ✅ DB `petstore` avec schéma contrôlé par l'application (`hbm2ddl.auto=create`)
+- ✅ Mapping complet des 6 entités + 2 enums
+- ✅ Relations `@OneToMany`, `@ManyToMany`, `@ManyToOne`
+- ✅ Héritage `@Inheritance(JOINED)` sur `Animal`
+- ✅ ≥ 3 enregistrements insérés par table via `EntityManager`
+- ✅ Requête JPQL `findAllAnimalsByPetStore`
+- ✅ Historique Git propre (12 issues, 12+ PRs, 6 releases)
+- ✅ README documenté + collaborateur `@ssy-esaip` ajouté
+
 ## [0.9.0] — 2026-04-23
 
 ### Added
@@ -61,7 +87,8 @@ la numérotation suit [Semantic Versioning 2.0.0](https://semver.org/).
 - Sujet du TP (`tp-eval-pet-store.pdf`) à la racine
 - Config IntelliJ partagée (`.idea/misc.xml`, `modules.xml`, `vcs.xml`)
 
-[Unreleased]: https://github.com/CybLow/multi-couches/compare/v0.9.0...HEAD
+[Unreleased]: https://github.com/CybLow/multi-couches/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/CybLow/multi-couches/compare/v0.9.0...v1.0.0
 [0.9.0]: https://github.com/CybLow/multi-couches/compare/v0.5.0...v0.9.0
 [0.5.0]: https://github.com/CybLow/multi-couches/compare/v0.3.0...v0.5.0
 [0.3.0]: https://github.com/CybLow/multi-couches/compare/v0.2.0...v0.3.0
