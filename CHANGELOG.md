@@ -5,6 +5,25 @@ la numérotation suit [Semantic Versioning 2.0.0](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.5.0] — 2026-04-23
+
+### Added
+- **Hiérarchie `Animal`** (PR #12) — classe abstraite `@Entity` avec `@Inheritance(strategy=JOINED)` (stratégie imposée par le sujet)
+- **`Fish`** (PR #14) — sous-classe avec `livingEnv: FishLivEnv` (`@Enumerated(STRING)`)
+- **`Cat`** (PR #14) — sous-classe avec `chipId: String` (`unique=true`)
+- **`Product`** (PR #16) — id, code (unique), label, type (`@Enumerated(STRING)`), price
+- **`PetStore`** (PR #18) — entité pivot avec les 3 relations :
+  - `@ManyToOne(unique=true)` vers `Address` (simule 1:1 avec les annotations autorisées)
+  - `@OneToMany(mappedBy="petStore", cascade=ALL, orphanRemoval=true)` vers `Animal`
+  - `@ManyToMany(mappedBy="petStores")` vers `Product` (owner = `Product`)
+- Helpers bidirectionnels (`addAnimal`, `removeAnimal`, `addPetStore`)
+- Diagramme ASCII des relations dans `docs/ARCHITECTURE.md`
+
+### Changed
+- `Animal` : ajout du champ `petStore` (`@ManyToOne`) pour la relation bidirectionnelle
+- `Product` : ajout du champ `petStores` (`@ManyToMany`, owner)
+- `persistence.xml` : toutes les 6 entités désormais listées
+
 ## [0.3.0] — 2026-04-23
 
 ### Added
@@ -31,7 +50,8 @@ la numérotation suit [Semantic Versioning 2.0.0](https://semver.org/).
 - Sujet du TP (`tp-eval-pet-store.pdf`) à la racine
 - Config IntelliJ partagée (`.idea/misc.xml`, `modules.xml`, `vcs.xml`)
 
-[Unreleased]: https://github.com/CybLow/multi-couches/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/CybLow/multi-couches/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/CybLow/multi-couches/compare/v0.3.0...v0.5.0
 [0.3.0]: https://github.com/CybLow/multi-couches/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/CybLow/multi-couches/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/CybLow/multi-couches/releases/tag/v0.1.0
