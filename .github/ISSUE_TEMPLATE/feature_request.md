@@ -1,30 +1,30 @@
 ---
-name: "🚀 Feature"
+name: "Feature"
 about: "Proposer une nouvelle fonctionnalité"
 title: "feat(<scope>): <résumé court>"
 labels: ["type: feat"]
 assignees: []
 ---
 
-## 🎯 Contexte
+## Contexte
 
 <!-- Pourquoi cette feature est nécessaire. Lien vers le sujet du TP / une autre issue si pertinent. -->
 
-## 🎯 Objectif
+## Objectif
 
 <!-- Description du comportement attendu en 1-2 phrases. -->
 
-## ✅ Critères d'acceptation
+## Critères d'acceptation
 
 - [ ] …
 - [ ] …
 
-## 🧾 Sous-tâches
+## Sous-tâches
 
 - [ ] …
 - [ ] …
 
-## ✔️ Definition of Done
+## Definition of Done
 
 - [ ] Commits en **Conventional Commits** (feat/fix/docs/chore/refactor)
 - [ ] Branche nommée `<type>/<N>-<slug>` et supprimée après merge

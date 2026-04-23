@@ -1,26 +1,26 @@
 ---
-name: "🐛 Bug report"
+name: "Bug report"
 about: "Signaler un bug, une régression ou un comportement inattendu"
 title: "fix(<scope>): <résumé>"
 labels: ["type: fix"]
 assignees: []
 ---
 
-## 🐛 Description
+## Description
 
 <!-- Décrire clairement le problème observé. -->
 
-## 🔁 Étapes de reproduction
+## Étapes de reproduction
 
 1. …
 2. …
 3. …
 
-## ✅ Comportement attendu
+## Comportement attendu
 
 <!-- Ce qui devrait se passer si le code était correct. -->
 
-## 💥 Comportement observé
+## Comportement observé
 
 <!-- Ce qui se passe réellement. Joindre la stack trace ou les logs Hibernate pertinents. -->
 
@@ -28,7 +28,7 @@ assignees: []
 <logs / stacktrace>
 ```
 
-## 🖥 Environnement
+## Environnement
 
 - OS : …
 - Java : `java -version` →
@@ -36,6 +36,6 @@ assignees: []
 - Version du projet : `vX.Y.Z`
 - Commit : `git rev-parse --short HEAD` →
 
-## 📸 Captures
+## Captures
 
 <!-- Optionnel. -->

@@ -12,7 +12,7 @@
 
 ---
 
-## 👥 Auteurs
+## Auteurs
 
 | Prénom NOM | Compte GitHub |
 |---|---|
@@ -21,7 +21,7 @@
 
 ---
 
-## 🎯 Contexte du TP
+## Contexte du TP
 
 Le sujet complet est joint à la racine : [`tp-eval-pet-store.pdf`](tp-eval-pet-store.pdf).
 
@@ -37,45 +37,45 @@ Le sujet complet est joint à la racine : [`tp-eval-pet-store.pdf`](tp-eval-pet-
 
 ---
 
-## 📐 Architecture multi-couches
+## Architecture multi-couches
 
 ```
 ┌────────────────────────────────────────────────────┐
-│                      Main                          │  ← point d'entrée
+│                      Main                          │  point d'entrée
 ├────────────────────────────────────────────────────┤
-│                  service/                          │  ← logique métier
-│          PetStoreService, SeedService              │     (orchestration)
+│                  service/                          │  logique métier
+│          PetStoreService, SeedService              │   (orchestration)
 ├────────────────────────────────────────────────────┤
-│                    dao/                            │  ← accès aux données
-│   GenericDao, {Address,Animal,PetStore,Product}Dao │     (EntityManager)
+│                    dao/                            │  accès aux données
+│   GenericDao, {Address,Animal,PetStore,Product}Dao │   (EntityManager)
 ├────────────────────────────────────────────────────┤
-│                   entity/                          │  ← modèle JPA
-│     Address, Animal, Cat, Fish, PetStore,          │     (annotations)
+│                   entity/                          │  modèle JPA
+│     Address, Animal, Cat, Fish, PetStore,          │   (annotations)
 │     Product + enums/                               │
 ├────────────────────────────────────────────────────┤
-│                   config/                          │  ← infrastructure
-│        EntityManagerFactoryProvider                │     (persistence.xml)
+│                   config/                          │  infrastructure
+│        EntityManagerFactoryProvider                │   (persistence.xml)
 └────────────────────────────────────────────────────┘
 ```
 
 Détails : [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
-## 🗂 Modèle de données
+## Modèle de données
 
 ```
                                  Address
-                                   ▲ 1
-                                   │  @ManyToOne(unique=true) — 1:1 simulé
-                                   │
-                             1  PetStore  N ◄────────── @ManyToMany ──────── Product
-                                   │                                           │
-                                   │  @OneToMany(mappedBy="petStore")          │
-                                   │  cascade=ALL, orphanRemoval=true          │
-                                   ▼ N                                         │
-                               Animal  (JOINED)                                │
-                                ▲   ▲                                          │
-                                │   │                                          │
-                               Fish Cat                                        │
+                                   ^ 1
+                                   |  @ManyToOne(unique=true) — 1:1 simulé
+                                   |
+                             1  PetStore  N <────────── @ManyToMany ──────── Product
+                                   |                                           |
+                                   |  @OneToMany(mappedBy="petStore")          |
+                                   |  cascade=ALL, orphanRemoval=true          |
+                                   v N                                         |
+                               Animal  (JOINED)                                |
+                                ^   ^                                          |
+                                |   |                                          |
+                               Fish Cat                                        |
                                                                  type = ProdType
                                                                  (FOOD / ACCESSORY /
                                                                   CLEANING)
@@ -86,10 +86,11 @@ Détails : [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
 ---
 
-## 🚀 Démarrage rapide
+## Démarrage rapide
 
-**Prérequis** — Java 17+, Maven 3.9+, Podman (ou Docker) avec un conteneur MariaDB local
-sur le port 3306. Détails : [`docs/INSTALLATION.md`](docs/INSTALLATION.md).
+**Prérequis** — Java 17+, Maven 3.9+, Podman (ou Docker) avec un conteneur
+MariaDB local nommé `jpa-mariadb` et exposé sur le port 3306. Détails :
+[`docs/INSTALLATION.md`](docs/INSTALLATION.md).
 
 ```bash
 # 1. Cloner
@@ -110,7 +111,7 @@ mvn clean compile exec:java
 
 --- 1. Insertion des données de démonstration ---
 [logs Hibernate CREATE TABLE × 7, INSERT × 16]
-✅ Seed terminé — commit OK.
+[OK] Seed terminé, transaction commitée.
 
 --- 2. Vérification du nombre d'enregistrements ---
   • 3 Addresses
@@ -119,15 +120,15 @@ mvn clean compile exec:java
   • 3 Products
 
 --- 3. Animaux de la 1re animalerie (requête JPQL imposée) ---
-🏪 PetStore#1 'Animalis Bastille' (manager=Alice MARTIN)
-  🐾 Cat#1 (chip=250269606123456, noir)
-  🐾 Fish#3 (FRESH_WATER, bleu)
-✅ Requête OK — 2 animal(s) trouvé(s).
+Animalerie ciblée : PetStore#1 'Animalis Bastille' (manager=Alice MARTIN)
+  - Cat#1 (chip=250269606123456, noir)
+  - Fish#2 (FRESH_WATER, bleu)
+[OK] Requête exécutée : 2 animal(s) trouvé(s).
 
 === TP Eval Pet Store — terminé ===
 ```
 
-## 🧪 Vérification en base
+## Vérification en base
 
 ```bash
 podman exec jpa-mariadb mariadb -ujpa_user -pjpa_pass petstore -e "SHOW TABLES;"
@@ -140,7 +141,7 @@ podman exec jpa-mariadb mariadb -ujpa_user -pjpa_pass petstore \
 
 ---
 
-## 🗂 Structure du projet
+## Structure du projet
 
 ```
 multi-couches/
@@ -168,29 +169,29 @@ multi-couches/
 
 ---
 
-## ⚙️ Workflow DevOps
+## Workflow DevOps
 
 Le projet suit un **GitHub Flow strict** à 2 mains :
 
 - **Issues** → créées depuis les templates `.github/ISSUE_TEMPLATE/`, labellisées, assignées, rattachées au milestone `v1.0.0`
 - **Branches** → nommées `<type>/<N>-<slug>` (`feat/5-animal-entity`, `chore/1-project-scaffold`…)
 - **Commits** → [Conventional Commits 1.0](https://www.conventionalcommits.org/) (`feat(entity): add Product`)
-- **Pull Requests** → template rempli, review obligatoire par le binôme, 3 PRs ont passé par un cycle « request changes → fix → approve » pour démontrer la collaboration réelle
+- **Pull Requests** → template rempli, review obligatoire par le binôme ; plusieurs PRs ont passé par un cycle « request changes → fix → approve » pour refléter une collaboration réelle
 - **Releases** → [SemVer 2.0](https://semver.org/), taguées sur `main` avec release notes : `v0.1.0` → `v0.2.0` → `v0.3.0` → `v0.5.0` → `v0.9.0` → **`v1.0.0`**
 - **`main` protégée** → pas de push direct, 1 review + statuts verts requis, historique linéaire
 
 Détails : [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
-### 📑 Statistiques du projet
+### Statistiques du projet
 
-- **12 issues** fermées (6 par binôme)
-- **12+ Pull Requests** mergées (8 squash, 4 rebase/merge pour les PRs structurantes)
+- **13 issues** fermées (réparties entre les 2 comptes)
+- **18 Pull Requests** mergées (features + releases + fix)
 - **60+ commits** en Conventional Commits
-- **6 releases** taguées avec release notes auto-générées
+- **6 releases** taguées avec release notes
 
 ---
 
-## 📦 Versions & Releases
+## Versions & Releases
 
 | Version | Date | Contenu principal |
 |---|---|---|
@@ -205,7 +206,7 @@ Historique détaillé : [`CHANGELOG.md`](CHANGELOG.md).
 
 ---
 
-## 📚 Documentation complémentaire
+## Documentation complémentaire
 
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — détail multi-couches + relations JPA + choix de design
 - [`docs/DATABASE.md`](docs/DATABASE.md) — schéma DB, commandes podman, troubleshooting
@@ -214,6 +215,6 @@ Historique détaillé : [`CHANGELOG.md`](CHANGELOG.md).
 
 ---
 
-## 📄 Licence
+## Licence
 
 [MIT](LICENSE) — © 2026 Lois MARTIN, Maksim DUDARENKA.
