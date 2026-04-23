@@ -5,9 +5,13 @@ la numérotation suit [Semantic Versioning 2.0.0](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.3.0] — 2026-04-23
+
 ### Added
 - Enum `fr.esaip.petstore.entity.enums.ProdType` (`FOOD`, `ACCESSORY`, `CLEANING`)
 - Enum `fr.esaip.petstore.entity.enums.FishLivEnv` (`FRESH_WATER`, `SEA_WATER`)
+- Entité `fr.esaip.petstore.entity.Address` (id, number, street, zipCode, city) avec `@Column(length=...)` explicites
+- `Address` enregistrée dans `persistence.xml`
 
 ## [0.2.0] — 2026-04-23
 
@@ -27,6 +31,7 @@ la numérotation suit [Semantic Versioning 2.0.0](https://semver.org/).
 - Sujet du TP (`tp-eval-pet-store.pdf`) à la racine
 - Config IntelliJ partagée (`.idea/misc.xml`, `modules.xml`, `vcs.xml`)
 
-[Unreleased]: https://github.com/CybLow/multi-couches/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/CybLow/multi-couches/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/CybLow/multi-couches/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/CybLow/multi-couches/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/CybLow/multi-couches/releases/tag/v0.1.0
