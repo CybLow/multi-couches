@@ -52,6 +52,26 @@ Voir le PDF du sujet à la racine : [`tp-eval-pet-store.pdf`](../tp-eval-pet-sto
 | PetStore 1 — 1 Address | `@ManyToOne` + `unique=true` | `PetStore` | Le sujet impose de n'utiliser que `@OneToMany`, `@ManyToMany`, `@ManyToOne`. Un `@ManyToOne` avec `unique=true` sur la FK simule parfaitement un 1:1 côté DB. |
 | PetStore 1 — N Animal | `@OneToMany(mappedBy="petStore")` côté `PetStore` + `@ManyToOne` côté `Animal` | `Animal` | `cascade=ALL, orphanRemoval=true` sur le OneToMany |
 
+### Diagramme des relations (texte)
+
+```
+                             @ManyToOne (unique)
+            PetStore ───────────────────────────────►  Address
+               │                                        (petstore.address_id)
+               │
+               │ @OneToMany (mappedBy="petStore")
+               │ @ManyToOne côté Animal
+               ▼
+             Animal ◄──────┬────── Fish  (JOINED)
+               ▲           └────── Cat   (JOINED)
+               │
+               │ @ManyToMany(mappedBy="petStores")
+               │
+           Product ────────────────────► (table product_petstore)
+                          @ManyToMany
+                          @JoinTable
+```
+
 ## 🌳 Héritage
 
 **Stratégie imposée par le sujet** : `@Inheritance(strategy = InheritanceType.JOINED)`.
