@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
+                                 https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd"
+             version="3.1">
+
+    <!--
+      Persistence-unit dédiée au TP Eval Pet Store.
+      Les entités seront listées au fur et à mesure des PRs (issues #3 à #8).
+      On laisse la balise <class/> vide pour l'instant : Hibernate
+      auto-détectera les @Entity via le classpath (fallback).
+    -->
+    <persistence-unit name="petstore-pu" transaction-type="RESOURCE_LOCAL">
+
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- Les entités seront ajoutées ici par les PRs suivantes : -->
+        <!-- <class>fr.esaip.petstore.entity.Address</class>         -->
+        <!-- <class>fr.esaip.petstore.entity.Animal</class>          -->
+        <!-- <class>fr.esaip.petstore.entity.Cat</class>             -->
+        <!-- <class>fr.esaip.petstore.entity.Fish</class>            -->
+        <!-- <class>fr.esaip.petstore.entity.PetStore</class>        -->
+        <!-- <class>fr.esaip.petstore.entity.Product</class>         -->
+
+        <properties>
+            <!-- Connexion JDBC : convention du cours (jpa_user / jpa_pass) -->
+            <property name="jakarta.persistence.jdbc.driver"
+                      value="org.mariadb.jdbc.Driver"/>
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:mariadb://localhost:3306/petstore"/>
+            <property name="jakarta.persistence.jdbc.user"
+                      value="jpa_user"/>
+            <property name="jakarta.persistence.jdbc.password"
+                      value="jpa_pass"/>
+
+            <!-- Hibernate prend la main sur la création du schéma (consigne sujet) -->
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDBDialect"/>
+
+            <!-- Observabilité : on veut voir le SQL généré pendant le TP -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.highlight_sql" value="true"/>
+            <property name="hibernate.use_sql_comments" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
