@@ -8,18 +8,23 @@ import jakarta.persistence.Persistence;
  * Fournit un {@link EntityManagerFactory} unique et thread-safe pour toute
  * l'application.
  *
- * <p>Le nom de la persistence-unit (« petstore-pu ») est défini dans
- * {@code META-INF/persistence.xml}. L'EMF est créé de façon paresseuse à la
- * première demande et fermé proprement via le {@linkplain Runtime#addShutdownHook
- * shutdown hook} enregistré dans le bloc statique.</p>
+ * <p>Le nom de la persistence-unit ({@value #PERSISTENCE_UNIT_NAME}) est
+ * défini dans {@code META-INF/persistence.xml}. L'EMF est créé de façon
+ * paresseuse à la première demande (Initialization-on-demand Holder Idiom),
+ * et doit être fermé explicitement par l'appelant via {@link #close()} à
+ * la fin du traitement.</p>
  *
  * <p>Utilisation typique :</p>
  * <pre>
  *   EntityManager em = EntityManagerFactoryProvider.getEntityManager();
- *   em.getTransaction().begin();
- *   // ...
- *   em.getTransaction().commit();
- *   em.close();
+ *   try {
+ *       em.getTransaction().begin();
+ *       // ...
+ *       em.getTransaction().commit();
+ *   } finally {
+ *       em.close();
+ *       EntityManagerFactoryProvider.close();
+ *   }
  * </pre>
  */
 public final class EntityManagerFactoryProvider {
@@ -30,15 +35,6 @@ public final class EntityManagerFactoryProvider {
     private static final class Holder {
         private static final EntityManagerFactory INSTANCE =
                 Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-    }
-
-    static {
-        // Fermeture propre de l'EMF à l'arrêt de la JVM
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            if (Holder.INSTANCE.isOpen()) {
-                Holder.INSTANCE.close();
-            }
-        }, "emf-shutdown-hook"));
     }
 
     private EntityManagerFactoryProvider() {
@@ -53,5 +49,21 @@ public final class EntityManagerFactoryProvider {
     /** @return un nouvel EntityManager prêt à l'emploi. À fermer par l'appelant. */
     public static EntityManager getEntityManager() {
         return Holder.INSTANCE.createEntityManager();
+    }
+
+    /**
+     * Ferme l'EMF partagé. À appeler une fois le traitement terminé.
+     *
+     * <p>On évite volontairement un shutdown hook JVM : sous
+     * {@code exec-maven-plugin}, le plugin détruit son {@code URLClassLoader}
+     * dès la fin de {@code main()}, ce qui rend inaccessibles les classes
+     * Hibernate nécessaires à la fermeture si elle est déclenchée par le
+     * hook. Un close explicite depuis le {@code Main} est plus propre et
+     * évite toute stack trace.</p>
+     */
+    public static void close() {
+        if (Holder.INSTANCE.isOpen()) {
+            Holder.INSTANCE.close();
+        }
     }
 }
