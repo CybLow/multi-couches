@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -16,6 +18,7 @@ import java.util.Objects;
  * Classe mère abstraite de la hiérarchie des animaux vendus en animalerie.
  */
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "animal")
 public abstract class Animal {
 
