@@ -11,6 +11,8 @@ la numérotation suit [Semantic Versioning 2.0.0](https://semver.org/).
 - `CONTRIBUTING.md` décrivant le GitHub Flow, les Conventional Commits et SemVer
 - Squelettes de documentation (`docs/ARCHITECTURE.md`, `docs/DATABASE.md`, `docs/INSTALLATION.md`)
 - Répertoire `init-db/` pour le script SQL de création de la DB `petstore`
+- `src/main/resources/META-INF/persistence.xml` — persistence-unit `petstore-pu`, Hibernate `hbm2ddl=create`
+- `fr.esaip.petstore.config.EntityManagerFactoryProvider` — EMF singleton thread-safe + shutdown hook
 
 ## [0.1.0] — 2026-04-23
 
