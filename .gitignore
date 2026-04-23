@@ -1,0 +1,72 @@
+# ---------------------------------------------------------------------------
+# Projet local
+# ---------------------------------------------------------------------------
+AJOUTER_TP.md
+gh 2eme compte
+
+# ---------------------------------------------------------------------------
+# Maven
+# ---------------------------------------------------------------------------
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# ---------------------------------------------------------------------------
+# IntelliJ IDEA
+# ---------------------------------------------------------------------------
+out/
+*.iml
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/usage.statistics.xml
+.idea/shelf/
+.idea/dataSources/
+.idea/dataSources.local.xml
+.idea/sqlDataSources.xml
+.idea/dynamic.xml
+.idea/uiDesigner.xml
+.idea/dbnavigator.xml
+.idea/httpRequests/
+.idea/**/contentModel.xml
+.kotlin
+
+# ---------------------------------------------------------------------------
+# Eclipse
+# ---------------------------------------------------------------------------
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+# ---------------------------------------------------------------------------
+# VS Code
+# ---------------------------------------------------------------------------
+.vscode/
+
+# ---------------------------------------------------------------------------
+# OS
+# ---------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+
+# ---------------------------------------------------------------------------
+# Java
+# ---------------------------------------------------------------------------
+*.class
+*.log
+*.ctxt
+hs_err_pid*
+replay_pid*
